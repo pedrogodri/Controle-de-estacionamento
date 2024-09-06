@@ -3,7 +3,7 @@
       <div class="col-md-12">
         <div class="row justify-content-between">
           <div class="col-md-2">
-            <button class="btn btn-primary my-3" (click)="novoCadastroProduto()">
+            <button class="btn btn-primary my-3" (click)="novaTabelaPreco()">
               <i class="fa fa-plus pe-2"></i>
               Novo
             </button>
@@ -32,6 +32,9 @@
               <td class="d-flex justify-content-start line-list">
                 <button type="button" class="btn btn-primary mx-4 px-4">
                   <i class="fa-solid fa-circle-info"></i>
+                </button>
+                <button type="button" class="btn btn-primary mx-4 px-4" (click)="tabelaPreco.id !== undefined ? editarTabelaPreco(tabelaPreco.id) : null">
+                  <i class="fa-solid fa-pen"></i>
                 </button>
               </td>
             </tr>

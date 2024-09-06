@@ -31,8 +31,13 @@ export class ListaTabelaPrecoComponent {
     );
   }
 
-  novoCadastroProduto(): void {
-    this.router.navigate(['cadastro-produto']);
+  novaTabelaPreco(): void {
+    this.router.navigate(['cadastro-tabela-preco']);
+  }
+
+  editarTabelaPreco(idTabelaPreco: number): void {
+    this.service.setTabelaPrecoId(idTabelaPreco);
+    this.router.navigate(['editar-tabela-preco'])
   }
 
   formatDateTime(dateTime?: string | Date): string {

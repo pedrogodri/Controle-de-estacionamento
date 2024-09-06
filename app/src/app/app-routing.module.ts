@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'lista-veiculos', pathMatch: 'full' },
   { path: 'lista-tabela-preco', component: ListaTabelaPrecoComponent },
   { path: 'cadastro-tabela-preco', component: FormTabelaPrecoComponent },
+  { path: 'editar-tabela-preco', component: FormTabelaPrecoComponent },
   // { path: 'lista-veiculos', component: ListaProjetoComponent },
   // { path: 'cadastro-veiculos', component: CadastroProjetoComponent },
 ];

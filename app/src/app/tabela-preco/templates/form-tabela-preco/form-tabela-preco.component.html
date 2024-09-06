@@ -1,1 +1,70 @@
-<p>form-tabela-preco works!</p>
+<form #tabelaPrecoForm="ngForm">
+    
+    
+    <div class="row d-flex justify-content-center">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <input type="number" [(ngModel)]="tabelaPreco.valorHoraInicial" name="valorHoraInicial" class="form-control" id="floatingInputValorHoraInicial"
+            placeholder="Valor Hora Inicial">
+          <label for="floatingInputValorHoraInicial" class="form-label">Valor Hora Inicial</label>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row d-flex justify-content-center">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <input type="number" [(ngModel)]="tabelaPreco.valorHoraAdicional" name="valorHoraAdicional" class="form-control" id="floatingInputValorHoraAdicional"
+            placeholder="Valor Hora Adicional">
+          <label for="floatingInputValorHoraAdicional" class="form-label">Valor Hora Adicional</label>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row d-flex justify-content-center">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <input type="date" [(ngModel)]="tabelaPreco.dataInicio" name="dataInicio" class="form-control" id="floatingInputDataInicio"
+            placeholder="Data Início">
+          <label for="floatingInputDataInicio" class="form-label">Data Início</label>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row d-flex justify-content-center">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <input type="date" [(ngModel)]="tabelaPreco.dataFim" name="dataFim" class="form-control" id="floatingInputDataFim"
+            placeholder="Data Fim">
+          <label for="floatingInputDataFim" class="form-label">Data Fim</label>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row d-flex justify-content-center mt-1">
+      <div class="col-6">
+        <button class="btn btn-success w-100" type="submit" (click)="onSubmit()" *ngIf="!tabelaPreco.id">
+          <i class="fa fa-save"></i>
+          Cadastrar
+        </button>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center mt-1">
+        <div class="col-6">
+          <button class="btn btn-warning w-100" type="submit" (click)="onSubmit()" *ngIf="tabelaPreco.id">
+            <i class="fa fa-save"></i>
+            Atualizar
+          </button>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center mt-1">
+        <div class="col-6">
+          <button class="btn btn-secondary w-100" type="button" (click)="voltarListagem()">
+            <i class="fa fa-save"></i>
+            Voltar
+          </button>
+        </div>
+    </div>
+</form>
