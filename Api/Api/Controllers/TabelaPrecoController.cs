@@ -44,7 +44,7 @@ namespace Api.Controllers
             return Ok(tabelasprecos);
         }
 
-        [HttpDelete("ExcluirTabelaPreco")]
+        [HttpDelete("ExcluirTabelaPreco/{idTabelaPreco}")]
         public async Task<ActionResult<ResponseModel<List<TabelaPrecoModel>>>> ExcluirTabelaPreco(int idTabelaPreco)
         {
             var tabelasprecos = await _tabelaPrecoService.ExcluirTabelaPreco(idTabelaPreco);

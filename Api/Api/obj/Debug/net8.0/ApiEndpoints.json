@@ -80,7 +80,7 @@
   {
     "ContainingType": "Api.Controllers.TabelaPrecoController",
     "Method": "ExcluirTabelaPreco",
-    "RelativePath": "api/TabelaPreco/ExcluirTabelaPreco",
+    "RelativePath": "api/TabelaPreco/ExcluirTabelaPreco/{idTabelaPreco}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -88,7 +88,7 @@
       {
         "Name": "idTabelaPreco",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
