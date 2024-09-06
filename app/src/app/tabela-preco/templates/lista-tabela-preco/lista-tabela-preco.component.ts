@@ -32,6 +32,7 @@ export class ListaTabelaPrecoComponent {
   }
 
   novaTabelaPreco(): void {
+    this.service.setTabelaPrecoId(0);
     this.router.navigate(['cadastro-tabela-preco']);
   }
 
