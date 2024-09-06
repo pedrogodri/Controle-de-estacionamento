@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VeiculoModule } from './veiculo/veiculo.module';
 import { TabelaPrecoModule } from './tabela-preco/tabela-preco.module';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TabelaPrecoModule } from './tabela-preco/tabela-preco.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ComponentsModule,
     VeiculoModule,
     TabelaPrecoModule
   ],
