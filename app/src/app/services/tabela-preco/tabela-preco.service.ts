@@ -14,10 +14,10 @@ export class TabelaPrecoService {
 
   constructor(private http:HttpClient) { }
 
-  private url:string = 'http://localhost:5107/api/TabelaPreco/';
+  private url:string = 'http://localhost:5107/api/TabelaPreco';
 
-  listarTabelasPrecos(): Observable<ResponseModel<TabelaPrecoModel[]>> {
-    return this.http.get<ResponseModel<TabelaPrecoModel[]>>(`${this.url}/ListarTabelasPrecos`);
+  listarTabelasPrecos(): Observable<{ dados: TabelaPrecoModel[] }> {
+    return this.http.get<{ dados: TabelaPrecoModel[] }>(`${this.url}/ListarTabelasPrecos`);
   }
 
   buscarTabelaPrecoPorId(idTabelaPreco: number): Observable<ResponseModel<TabelaPrecoModel>> {

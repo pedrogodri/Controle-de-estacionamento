@@ -1,1 +1,43 @@
-<p>lista-tabela-preco works!</p>
+<div class="container ajust-footer my-2">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row justify-content-between">
+          <div class="col-md-2">
+            <button class="btn btn-primary my-3" (click)="novoCadastroProduto()">
+              <i class="fa fa-plus pe-2"></i>
+              Novo
+            </button>
+          </div>
+        </div>
+  
+        <!-- lista-produto.component.html -->
+        <table class="table table-striped table-hover align-middle text-start">
+          <thead>
+            <tr>
+              <td class="col columns-list">*</td>
+              <td class="col columns-list">Data Início</td>
+              <td class="col columns-list">Data Fim</td>
+              <td class="col columns-list">Valor Hora Inicial</td>
+              <td class="col columns-list">Valor Hora Adicional</td>
+              <td class="col columns-list">Ações</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr scope="row" *ngFor="let tabelaPreco of tabelaPrecos">
+              <td class="line-list"> {{ tabelaPreco.id }} </td>
+              <td class="line-list"> {{ formatDateTime(tabelaPreco.dataInicio) }} </td>
+              <td class="line-list"> {{ formatDateTime(tabelaPreco.dataFim) }} </td>
+              <td class="line-list"> {{ tabelaPreco.valorHoraInicial }} </td>
+              <td class="line-list"> {{ tabelaPreco.valorHoraAdicional }} </td>
+              <td class="d-flex justify-content-start line-list">
+                <button type="button" class="btn btn-primary mx-4 px-4">
+                  <i class="fa-solid fa-circle-info"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
