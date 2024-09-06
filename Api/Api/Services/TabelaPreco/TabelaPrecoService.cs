@@ -20,7 +20,7 @@ namespace Api.Services.TabelaPreco
 
             try
             {
-                var tabelapreco = await _context.TabelaPrecos.FirstOrDefaultAsync(tabelaPrecoBanco => tabelaPrecoBanco.Id == idTabelaPreco);
+                var tabelapreco = await _context.TabelaPrecos.FirstOrDefaultAsync(tp => tp.Id == idTabelaPreco);
                 if(tabelapreco == null)
                 {
                     resposta.Mensagem = "Nenhuma Tabela de preço foi coletado";
@@ -44,6 +44,15 @@ namespace Api.Services.TabelaPreco
 
             try
             {
+                bool exists = await _context.TabelaPrecos.AnyAsync(tp => tp.DataInicio == tabelaPrecoCriacaoDto.DataInicio && tp.DataFim == tabelaPrecoCriacaoDto.DataFim);
+
+                if (exists)
+                {
+                    resposta.Mensagem = "Já existe uma tabela de preço com as mesmas datas de início e fim.";
+                    resposta.Status = false;
+                    return resposta;
+                }
+
                 var tabelaPreco = new TabelaPrecoModel()
                 {
                     DataInicio = tabelaPrecoCriacaoDto.DataInicio,
@@ -72,11 +81,21 @@ namespace Api.Services.TabelaPreco
 
             try
             {
-                var tabelaPreco = await _context.TabelaPrecos.FirstOrDefaultAsync(tabelaPrecoBanco => tabelaPrecoBanco.Id == tabelaPrecoEdicaoDto.Id);
+                var tabelaPreco = await _context.TabelaPrecos.FirstOrDefaultAsync(tp => tp.Id == tabelaPrecoEdicaoDto.Id);
 
                 if(tabelaPreco == null)
                 {
                     resposta.Mensagem = "Nenhuma tabela de preço encontrada";
+                    return resposta;
+                }
+
+                bool exists = await _context.TabelaPrecos.AnyAsync(tp => tp.Id != tabelaPrecoEdicaoDto.Id 
+                                                                   && tp.DataInicio == tabelaPrecoEdicaoDto.DataInicio && tp.DataFim == tabelaPrecoEdicaoDto.DataFim);
+
+                if (exists)
+                {
+                    resposta.Mensagem = "Já existe outra tabela de preço com as mesmas datas de início e fim.";
+                    resposta.Status = false;
                     return resposta;
                 }
 
@@ -107,7 +126,7 @@ namespace Api.Services.TabelaPreco
 
             try
             {
-                var tabelaPreco = await _context.TabelaPrecos.FirstOrDefaultAsync(tabelaPrecoBanco => tabelaPrecoBanco.Id == idTabelaPreco);
+                var tabelaPreco = await _context.TabelaPrecos.FirstOrDefaultAsync(tp => tp.Id == idTabelaPreco);
 
                 if(tabelaPreco == null)
                 {
