@@ -1,0 +1,126 @@
+[
+  {
+    "ContainingType": "Api.Controllers.TabelaPrecoController",
+    "Method": "BuscarTabelaPrecoPorId",
+    "RelativePath": "api/TabelaPreco/BuscarTabelaPrecoPorId/{idTabelaPreco}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idTabelaPreco",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[Api.Models.TabelaPrecoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.TabelaPrecoController",
+    "Method": "CriarTabelaPreco",
+    "RelativePath": "api/TabelaPreco/CriarTabelaPreco",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tabelaPrecoCriacaoDto",
+        "Type": "Api.Dto.TabelaPreco.TabelaPrecoCriacaoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[System.Collections.Generic.List\u00601[[Api.Models.TabelaPrecoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.TabelaPrecoController",
+    "Method": "EditarTabelaPreco",
+    "RelativePath": "api/TabelaPreco/EditarTabelaPreco",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tabelaPrecoEdicaoDto",
+        "Type": "Api.Dto.TabelaPreco.TabelaPrecoEdicaoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[System.Collections.Generic.List\u00601[[Api.Models.TabelaPrecoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.TabelaPrecoController",
+    "Method": "ExcluirTabelaPreco",
+    "RelativePath": "api/TabelaPreco/ExcluirTabelaPreco",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idTabelaPreco",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[System.Collections.Generic.List\u00601[[Api.Models.TabelaPrecoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.TabelaPrecoController",
+    "Method": "ListarTabelasPrecos",
+    "RelativePath": "api/TabelaPreco/ListarTabelasPrecos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[System.Collections.Generic.List\u00601[[Api.Models.TabelaPrecoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
