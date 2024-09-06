@@ -122,5 +122,47 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Api.Controllers.VeiculoController",
+    "Method": "RegistrarEntrada",
+    "RelativePath": "api/Veiculo/entrada",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "veiculoEntradaDto",
+        "Type": "Api.Dto.Veiculo.VeiculoEntradaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Api.Controllers.VeiculoController",
+    "Method": "ListarVeiculos",
+    "RelativePath": "api/Veiculo/listar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Api.Controllers.VeiculoController",
+    "Method": "RegistrarSaida",
+    "RelativePath": "api/Veiculo/saida",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "veiculoSaidaDto",
+        "Type": "Api.Dto.Veiculo.VeiculoSaidaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
