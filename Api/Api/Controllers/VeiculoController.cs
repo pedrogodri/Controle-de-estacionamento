@@ -1,4 +1,6 @@
-﻿using Api.Dto.Veiculo;
+﻿using Api.Dto.TabelaPreco;
+using Api.Dto.Veiculo;
+using Api.Models;
 using Api.Services.Veiculo;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +18,8 @@ namespace Api.Controllers
             _veiculoService = veiculoService;
         }
 
-        [HttpPost("entrada")]
-        public async Task<IActionResult> RegistrarEntrada(VeiculoEntradaDto veiculoEntradaDto)
+        [HttpPost("Entrada")]
+        public async Task<ActionResult<ResponseModel<VeiculoModel>>> RegistrarEntrada(VeiculoEntradaDto veiculoEntradaDto)
         {
             var result = await _veiculoService.RegistrarEntrada(veiculoEntradaDto);
             if (!result.Status)
@@ -26,8 +28,8 @@ namespace Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost("saida")]
-        public async Task<IActionResult> RegistrarSaida(VeiculoSaidaDto veiculoSaidaDto)
+        [HttpPost("Saida")]
+        public async Task<ActionResult<ResponseModel<VeiculoModel>>> RegistrarSaida(VeiculoSaidaDto veiculoSaidaDto)
         {
             var result = await _veiculoService.RegistrarSaida(veiculoSaidaDto);
             if (!result.Status)
@@ -36,8 +38,22 @@ namespace Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("listar")]
-        public async Task<IActionResult> ListarVeiculos()
+        [HttpPut("EditarVeiculo")]
+        public async Task<ActionResult<ResponseModel<VeiculoModel>>> EditarTabelaPreco(VeiculoEdicaoDto veiculoEdicaoDto)
+        {
+            var veiculo = await _veiculoService.EditarVeiculo(veiculoEdicaoDto);
+            return Ok(veiculo);
+        }
+
+        [HttpDelete("ExcluirVeiculo/{idVeiculo}")]
+        public async Task<ActionResult<ResponseModel<List<VeiculoModel>>>> ExcluirTabelaPreco(int idVeiculo)
+        {
+            var veiculo = await _veiculoService.ExcluirVeiculo(idVeiculo);
+            return Ok(veiculo);
+        }
+
+        [HttpGet("Listar")]
+        public async Task<ActionResult<ResponseModel<List<VeiculoModel>>>> ListarVeiculos()
         {
             var result = await _veiculoService.ListarVeiculos();
             if (!result.Status)

@@ -12,6 +12,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common'; // Importar o DatePipe
 })
 export class ListaTabelaPrecoComponent {
   tabelaPrecos?: TabelaPrecoModel[] = [];
+  tabelaPrecoSelecionado: TabelaPrecoModel = new TabelaPrecoModel();
 
   constructor(
     private service: TabelaPrecoService, 
@@ -30,6 +31,7 @@ export class ListaTabelaPrecoComponent {
       }
     );
   }
+  
 
   novaTabelaPreco(): void {
     this.service.setTabelaPrecoId(0);
@@ -39,6 +41,18 @@ export class ListaTabelaPrecoComponent {
   editarTabelaPreco(idTabelaPreco: number): void {
     this.service.setTabelaPrecoId(idTabelaPreco);
     this.router.navigate(['editar-tabela-preco'])
+  }
+
+  preparaDelecao(tabelaPrecos: TabelaPrecoModel) {
+    this.tabelaPrecoSelecionado = tabelaPrecos;
+  }
+
+  excluirTabelaPreco() {
+    this.service.excluirTabelaPreco(this.tabelaPrecoSelecionado.id).subscribe(
+      response => {
+        this.ngOnInit();
+      },
+    )
   }
 
   formatDateTime(dateTime?: string | Date): string {

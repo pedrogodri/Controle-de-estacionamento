@@ -23,6 +23,18 @@ namespace Api.Services.Veiculo
 
             try
             {
+                // Verificar se já existe um veículo com a mesma placa que ainda não registrou saída
+                var veiculoExistente = await _context.Veiculos
+                    .FirstOrDefaultAsync(v => v.Placa == veiculoEntradaDto.Placa && v.DataSaida == null);
+
+                if (veiculoExistente != null)
+                {
+                    resposta.Mensagem = "Este veículo já está registrado e ainda não foi dado saída.";
+                    resposta.Status = false;
+                    return resposta;
+                }
+
+                // Criar um novo registro de veículo
                 var vehicle = new VeiculoModel
                 {
                     Placa = veiculoEntradaDto.Placa,
@@ -44,13 +56,16 @@ namespace Api.Services.Veiculo
             }
         }
 
+
         public async Task<ResponseModel<VeiculoModel>> RegistrarSaida(VeiculoSaidaDto veiculoSaidaDto)
         {
             ResponseModel<VeiculoModel> resposta = new ResponseModel<VeiculoModel>();
 
             try
             {
-                var veiculos = await _context.Veiculos.FirstOrDefaultAsync(v => v.Id == veiculoSaidaDto.Id);
+                // Buscar o veículo pela placa
+                var veiculos = await _context.Veiculos
+                    .FirstOrDefaultAsync(v => v.Placa == veiculoSaidaDto.Placa);
 
                 if (veiculos == null)
                 {
@@ -116,6 +131,87 @@ namespace Api.Services.Veiculo
                 return resposta;
             }
         }
+
+        public async Task<ResponseModel<VeiculoModel>> EditarVeiculo(VeiculoEdicaoDto veiculoEdicaoDto)
+        {
+            ResponseModel<VeiculoModel> resposta = new ResponseModel<VeiculoModel>();
+
+            try
+            {
+                // Procurar o veículo pelo ID
+                var veiculo = await _context.Veiculos.FirstOrDefaultAsync(v => v.Id == veiculoEdicaoDto.Id);
+
+                if (veiculo == null)
+                {
+                    resposta.Mensagem = "Veículo não encontrado.";
+                    resposta.Status = false;
+                    return resposta;
+                }
+
+                // Verificar se já existe outro veículo com a mesma placa sem saída registrada
+                bool exists = await _context.Veiculos.AnyAsync(v => v.Id != veiculoEdicaoDto.Id && v.Placa == veiculoEdicaoDto.Placa && v.DataSaida == null);
+
+                if (exists)
+                {
+                    resposta.Mensagem = "Já existe outro veículo com a mesma placa registrado e ainda não foi dado saída.";
+                    resposta.Status = false;
+                    return resposta;
+                }
+
+                // Atualizar as informações do veículo
+                veiculo.Placa = veiculoEdicaoDto.Placa;
+                veiculo.DataEntrada = veiculoEdicaoDto.DataEntrada;
+                veiculo.DataSaida = veiculoEdicaoDto.DataSaida;
+
+                // Atualizar o contexto e salvar as mudanças
+                _context.Veiculos.Update(veiculo);
+                await _context.SaveChangesAsync();
+
+                resposta.Dados = veiculo;
+                resposta.Mensagem = "Veículo atualizado com sucesso.";
+                return resposta;
+            }
+            catch (Exception ex)
+            {
+                resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
+        }
+
+        public async Task<ResponseModel<List<VeiculoModel>>> ExcluirVeiculo(int idVeiculo)
+        {
+            ResponseModel<List<VeiculoModel>> resposta = new ResponseModel<List<VeiculoModel>>();
+
+            try
+            {
+                // Procurar o veículo pelo ID
+                var veiculo = await _context.Veiculos.FirstOrDefaultAsync(v => v.Id == idVeiculo);
+
+                if (veiculo == null)
+                {
+                    resposta.Mensagem = "Veículo não encontrado.";
+                    resposta.Status = false;
+                    return resposta;
+                }
+
+                // Remover o veículo do contexto
+                _context.Veiculos.Remove(veiculo);
+                await _context.SaveChangesAsync();
+
+                // Retornar a lista atualizada de veículos
+                resposta.Dados = await _context.Veiculos.ToListAsync();
+                resposta.Mensagem = "Veículo removido com sucesso.";
+                return resposta;
+            }
+            catch (Exception ex)
+            {
+                resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
+        }
+
 
         public async Task<ResponseModel<List<VeiculoModel>>> ListarVeiculos()
         {

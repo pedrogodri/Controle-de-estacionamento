@@ -1,4 +1,4 @@
 export class VeiculoSaidaDto {
-    id?: number;
+    placa?: string;
     dataSaida?: Date;
 }

@@ -1,5 +1,5 @@
 export class VeiculoModel {
-    id?: number;
+    id: number = 0;
     placa?: string;
     dataEntrada?: Date;
     dataSaida?: Date;

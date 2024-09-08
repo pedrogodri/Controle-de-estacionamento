@@ -125,8 +125,34 @@
   },
   {
     "ContainingType": "Api.Controllers.VeiculoController",
+    "Method": "EditarTabelaPreco",
+    "RelativePath": "api/Veiculo/EditarVeiculo",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "veiculoEdicaoDto",
+        "Type": "Api.Dto.Veiculo.VeiculoEdicaoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[Api.Models.VeiculoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.VeiculoController",
     "Method": "RegistrarEntrada",
-    "RelativePath": "api/Veiculo/entrada",
+    "RelativePath": "api/Veiculo/Entrada",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -137,22 +163,68 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[Api.Models.VeiculoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.VeiculoController",
+    "Method": "ExcluirTabelaPreco",
+    "RelativePath": "api/Veiculo/ExcluirVeiculo/{idVeiculo}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idVeiculo",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[System.Collections.Generic.List\u00601[[Api.Models.VeiculoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Api.Controllers.VeiculoController",
     "Method": "ListarVeiculos",
-    "RelativePath": "api/Veiculo/listar",
+    "RelativePath": "api/Veiculo/Listar",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[System.Collections.Generic.List\u00601[[Api.Models.VeiculoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Api.Controllers.VeiculoController",
     "Method": "RegistrarSaida",
-    "RelativePath": "api/Veiculo/saida",
+    "RelativePath": "api/Veiculo/Saida",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -163,6 +235,16 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Api.Models.ResponseModel\u00601[[Api.Models.VeiculoModel, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

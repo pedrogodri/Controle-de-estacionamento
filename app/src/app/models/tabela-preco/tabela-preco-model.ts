@@ -1,5 +1,5 @@
 export class TabelaPrecoModel {
-    id?: number;
+    id: number = 0;
     dataInicio?: Date;
     dataFim?: Date;
     valorHoraInicial?: number;
