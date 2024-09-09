@@ -1,3 +1,4 @@
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { VeiculoEntradaDto } from 'src/app/models/veiculo/veiculo-entrada-dto';
@@ -18,7 +19,9 @@ export class ListaVeiculoComponent {
 
   constructor(
     private service: VeiculoService,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe, 
+    private currencyPipe: CurrencyPipe
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +64,15 @@ export class ListaVeiculoComponent {
         console.error('Erro ao editar o veículo:', error);
       }
     );
+  }
+
+  formatDate(dateTime?: string | Date): string {
+    return dateTime ? this.datePipe.transform(dateTime, 'dd/MM/yyyy HH:mm:ss') || '' : '';
+  }
+
+  // Método para formatar valores monetários, personalize conforme sua necessidade
+  formatCurrency(value: number): string {
+    return this.currencyPipe.transform(value, 'BRL', 'symbol', '1.2-2') || '';
   }
   
 

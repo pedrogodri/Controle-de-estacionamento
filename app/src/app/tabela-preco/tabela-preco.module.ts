@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { ListaTabelaPrecoComponent } from './templates/lista-tabela-preco/lista-tabela-preco.component';
 import { FormTabelaPrecoComponent } from './templates/form-tabela-preco/form-tabela-preco.component';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +20,10 @@ import { BrowserModule } from '@angular/platform-browser';
   exports: [
     ListaTabelaPrecoComponent,
     FormTabelaPrecoComponent
+  ],
+  providers: [
+    DatePipe,
+    CurrencyPipe
   ]
 })
 export class TabelaPrecoModule { }

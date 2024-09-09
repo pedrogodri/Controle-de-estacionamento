@@ -30,7 +30,16 @@ namespace Api.Services.Veiculo
                 if (veiculoExistente != null)
                 {
                     resposta.Mensagem = "Este veículo já está registrado e ainda não foi dado saída.";
-                    resposta.Status = false;
+                    return resposta;
+                }
+
+                // Verificar se existe uma tabela de preço válida para a data de entrada do veículo
+                var tabelaPreco = await _context.TabelaPrecos
+                    .FirstOrDefaultAsync(tp => tp.DataInicio <= veiculoEntradaDto.DataEntrada && tp.DataFim >= veiculoEntradaDto.DataEntrada);
+
+                if (tabelaPreco == null)
+                {
+                    resposta.Mensagem = "Não existe tabela de preço válida para a data de entrada.";
                     return resposta;
                 }
 
@@ -56,7 +65,6 @@ namespace Api.Services.Veiculo
             }
         }
 
-
         public async Task<ResponseModel<VeiculoModel>> RegistrarSaida(VeiculoSaidaDto veiculoSaidaDto)
         {
             ResponseModel<VeiculoModel> resposta = new ResponseModel<VeiculoModel>();
@@ -76,13 +84,13 @@ namespace Api.Services.Veiculo
                 veiculos.DataSaida = veiculoSaidaDto.DataSaida;
                 veiculos.Duracao = veiculos.DataSaida.Value - veiculos.DataEntrada;
 
-                // Buscar a tabela de preço válida para a data de entrada do veículo
+                // Buscar a tabela de preço válida para o período de entrada e saída do veículo
                 var tabelaPreco = await _context.TabelaPrecos
-                    .FirstOrDefaultAsync(tp => tp.DataInicio <= veiculos.DataEntrada && tp.DataFim >= veiculos.DataEntrada);
+                    .FirstOrDefaultAsync(tp => tp.DataInicio <= veiculos.DataEntrada && tp.DataFim >= veiculos.DataSaida);
 
                 if (tabelaPreco == null)
                 {
-                    resposta.Mensagem = "Tabela de preço não encontrada para a data de entrada.";
+                    resposta.Mensagem = "Tabela de preço não encontrada para o período entre a data de entrada e saída.";
                     return resposta;
                 }
 
@@ -132,6 +140,7 @@ namespace Api.Services.Veiculo
             }
         }
 
+
         public async Task<ResponseModel<VeiculoModel>> EditarVeiculo(VeiculoEdicaoDto veiculoEdicaoDto)
         {
             ResponseModel<VeiculoModel> resposta = new ResponseModel<VeiculoModel>();
@@ -144,7 +153,6 @@ namespace Api.Services.Veiculo
                 if (veiculo == null)
                 {
                     resposta.Mensagem = "Veículo não encontrado.";
-                    resposta.Status = false;
                     return resposta;
                 }
 
@@ -154,7 +162,6 @@ namespace Api.Services.Veiculo
                 if (exists)
                 {
                     resposta.Mensagem = "Já existe outro veículo com a mesma placa registrado e ainda não foi dado saída.";
-                    resposta.Status = false;
                     return resposta;
                 }
 
@@ -191,7 +198,6 @@ namespace Api.Services.Veiculo
                 if (veiculo == null)
                 {
                     resposta.Mensagem = "Veículo não encontrado.";
-                    resposta.Status = false;
                     return resposta;
                 }
 
@@ -224,7 +230,6 @@ namespace Api.Services.Veiculo
                 if (veiculos == null || !veiculos.Any())
                 {
                     resposta.Mensagem = "Nenhum veículo encontrado.";
-                    resposta.Status = false;
                     return resposta;
                 }
 

@@ -5,6 +5,6 @@ export class VeiculoModel {
     dataSaida?: Date;
     duracao?: string; 
     tempoCobrado?: number; 
-    precoHora?: number;
-    valorTotal?: number;
+    precoHora: number = 0;
+    valorTotal: number  = 0;
 }

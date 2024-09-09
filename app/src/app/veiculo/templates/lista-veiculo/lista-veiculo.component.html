@@ -34,12 +34,12 @@
             <tr scope="row" *ngFor="let veiculo of veiculos">
               <td class="line-list"> {{ veiculo.id }} </td>
               <td class="line-list"> {{ veiculo.placa }} </td>
-              <td class="line-list"> {{ veiculo.dataEntrada }} </td>
-              <td class="line-list"> {{ veiculo.dataSaida }} </td>
+              <td class="line-list"> {{ formatDate(veiculo.dataEntrada) }} </td>
+              <td class="line-list"> {{ formatDate(veiculo.dataSaida) }} </td>
               <td class="line-list"> {{ veiculo.duracao }} </td>
               <td class="line-list"> {{ veiculo.tempoCobrado }} </td>
-              <td class="line-list"> {{ veiculo.precoHora }} </td>
-              <td class="line-list"> {{ veiculo.valorTotal }} </td>
+              <td class="line-list"> {{ formatCurrency(veiculo.precoHora) }} </td>
+              <td class="line-list"> {{ formatCurrency(veiculo.valorTotal) }} </td>
               <td class="d-flex justify-content-start line-list">
                 <button type="button" class="btn btn-danger mx-4 px-4" data-bs-toggle="modal" data-bs-target="#modalDelecao" (click)="preparaDelecao(veiculo)">
                   <i class="fa-solid fa-trash"></i>
@@ -66,7 +66,7 @@
             <h4>Confirmação de Deleção</h4>
           </div>
           <div class="modal-body" *ngIf="veiculoSelecionado">
-            Confirmar a deleção da data {{ veiculoSelecionado.placa }}
+            Confirmar a deleção da placa: {{ veiculoSelecionado.placa }}
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

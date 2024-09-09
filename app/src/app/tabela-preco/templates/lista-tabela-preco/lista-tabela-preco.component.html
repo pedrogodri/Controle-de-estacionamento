@@ -27,8 +27,8 @@
               <td class="line-list"> {{ tabelaPreco.id }} </td>
               <td class="line-list"> {{ formatDateTime(tabelaPreco.dataInicio) }} </td>
               <td class="line-list"> {{ formatDateTime(tabelaPreco.dataFim) }} </td>
-              <td class="line-list"> {{ tabelaPreco.valorHoraInicial }} </td>
-              <td class="line-list"> {{ tabelaPreco.valorHoraAdicional }} </td>
+              <td class="line-list"> {{ formatCurrency(tabelaPreco.valorHoraInicial) }} </td>
+              <td class="line-list"> {{ formatCurrency(tabelaPreco.valorHoraAdicional) }} </td>
               <td class="d-flex justify-content-start line-list">
                 <button type="button" class="btn btn-danger mx-4 px-4" data-bs-toggle="modal" data-bs-target="#modalDelecao" (click)="preparaDelecao(tabelaPreco)">
                   <i class="fa-solid fa-trash"></i>
