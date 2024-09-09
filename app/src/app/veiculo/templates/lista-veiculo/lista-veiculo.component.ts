@@ -16,14 +16,14 @@ export class ListaVeiculoComponent {
   veiculoSaida: VeiculoSaidaDto = new VeiculoSaidaDto();
   veiculoSelecionado: VeiculoModel = new VeiculoModel();
   
-  mensagemEntrada?: string = ''; // Mensagem de alerta para entrada
-  tipoAlertaEntrada: string = ''; // Tipo de alerta para entrada
+  mensagemEntrada?: string = ''; 
+  tipoAlertaEntrada: string = ''; 
   
-  mensagemSaida?: string = ''; // Mensagem de alerta para saída
-  tipoAlertaSaida: string = ''; // Tipo de alerta para saída
+  mensagemSaida?: string = ''; 
+  tipoAlertaSaida: string = '';
   
-  mensagemEdicao?: string = ''; // Mensagem de alerta para edição
-  tipoAlertaEdicao: string = ''; // Tipo de alerta para edição
+  mensagemEdicao?: string = ''; 
+  tipoAlertaEdicao: string = '';
 
   constructor(
     private service: VeiculoService,
@@ -64,7 +64,7 @@ export class ListaVeiculoComponent {
     this.service.editarVeiculo(this.veiculoSelecionado).subscribe(
       response => {
         this.mensagemEdicao = response.mensagem;
-        this.tipoAlertaEdicao = 'success'; // Tipo de alerta para edição
+        this.tipoAlertaEdicao = 'success';
         this.ngOnInit(); 
         this.veiculoSelecionado = new VeiculoModel(); 
       },
@@ -88,7 +88,7 @@ export class ListaVeiculoComponent {
     this.service.registrarEntrada(this.veiculoEntrada).subscribe(
       response => {
         this.mensagemEntrada = response.mensagem;
-        this.tipoAlertaEntrada = 'success'; // Tipo de alerta para cadastro de entrada
+        this.tipoAlertaEntrada = 'success';
         this.ngOnInit();
         this.veiculoEntrada = new VeiculoEntradaDto(); 
       },
@@ -103,7 +103,7 @@ export class ListaVeiculoComponent {
     this.service.registrarSaida(this.veiculoSaida).subscribe(
       response => {
         this.mensagemSaida = response.mensagem;
-        this.tipoAlertaSaida = 'success'; // Tipo de alerta para cadastro de saída
+        this.tipoAlertaSaida = 'success'; 
         this.ngOnInit();
         this.veiculoSaida = new VeiculoSaidaDto();
       },

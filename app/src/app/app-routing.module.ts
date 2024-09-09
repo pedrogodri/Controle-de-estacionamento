@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'cadastro-tabela-preco', component: FormTabelaPrecoComponent },
   { path: 'editar-tabela-preco', component: FormTabelaPrecoComponent },
   { path: 'lista-veiculos', component: ListaVeiculoComponent },
-  // { path: 'cadastro-veiculos', component: CadastroProjetoComponent },
 ];
 
 @NgModule({

@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TabelaPrecoModel } from 'src/app/models/tabela-preco/tabela-preco-model';
 import { TabelaPrecoService } from 'src/app/services/tabela-preco/tabela-preco.service';
-import { CurrencyPipe, DatePipe } from '@angular/common'; // Importar o DatePipe
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-lista-tabela-preco',
   templateUrl: './lista-tabela-preco.component.html',
   styleUrls: ['./lista-tabela-preco.component.scss'],
-  providers: [DatePipe] // Adicione o DatePipe aos providers
+  providers: [DatePipe]
 })
 export class ListaTabelaPrecoComponent {
   tabelaPrecos?: TabelaPrecoModel[] = [];
