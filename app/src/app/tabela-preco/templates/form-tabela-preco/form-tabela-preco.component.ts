@@ -12,7 +12,7 @@ import { TabelaPrecoEdicaoDto } from 'src/app/models/tabela-preco/tabela-preco-e
 export class FormTabelaPrecoComponent {
   tabelaPreco: TabelaPrecoCriacaoDto;
   idTabelaPreco?: number;
-  message?: string; // Adicione esta variável
+  message?: string;
 
   constructor(private service: TabelaPrecoService, private router: Router) {
     this.tabelaPreco = new TabelaPrecoCriacaoDto();
@@ -60,7 +60,7 @@ export class FormTabelaPrecoComponent {
       this.service.editarTabelaPreco(this.tabelaPreco as TabelaPrecoEdicaoDto).subscribe(
         (response) => {
           if (response && response.mensagem) {
-            this.message = response.mensagem; // Atualize a mensagem
+            this.message = response.mensagem; 
           }
         }
       );
@@ -68,7 +68,7 @@ export class FormTabelaPrecoComponent {
       this.service.criarTabelaPreco(this.tabelaPreco).subscribe(
         (response) => {
           if (response && response.dados) {
-            this.message = response.mensagem || 'Tabela de Preço criada com sucesso!'; // Atualize a mensagem
+            this.message = response.mensagem || 'Tabela de Preço criada com sucesso!';
             this.tabelaPreco = response.dados;
           }
         }

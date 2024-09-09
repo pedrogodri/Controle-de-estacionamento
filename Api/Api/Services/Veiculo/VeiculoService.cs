@@ -71,7 +71,6 @@ namespace Api.Services.Veiculo
 
             try
             {
-                // Buscar o veículo pela placa
                 var veiculos = await _context.Veiculos
                     .FirstOrDefaultAsync(v => v.Placa == veiculoSaidaDto.Placa);
 
@@ -84,7 +83,6 @@ namespace Api.Services.Veiculo
                 veiculos.DataSaida = veiculoSaidaDto.DataSaida;
                 veiculos.Duracao = veiculos.DataSaida.Value - veiculos.DataEntrada;
 
-                // Buscar a tabela de preço válida para o período de entrada e saída do veículo
                 var tabelaPreco = await _context.TabelaPrecos
                     .FirstOrDefaultAsync(tp => tp.DataInicio <= veiculos.DataEntrada && tp.DataFim >= veiculos.DataSaida);
 
@@ -94,14 +92,13 @@ namespace Api.Services.Veiculo
                     return resposta;
                 }
 
-                // Calcular o tempo cobrado e o valor total
                 decimal duracaoEmHoras = (decimal)veiculos.Duracao.Value.TotalMinutes / 60;
                 decimal tempoCobrado = 0;
                 decimal valorTotal = 0;
 
                 if (veiculos.Duracao.Value.TotalMinutes <= 30)
                 {
-                    tempoCobrado = 0.5M; // Cobrar meia hora se <= 30 minutos
+                    tempoCobrado = 0.5M; 
                     valorTotal = tabelaPreco.ValorHoraInicial / 2;
                 }
                 else
@@ -114,7 +111,6 @@ namespace Api.Services.Veiculo
                         valorTotal += (tempoCobrado - 1) * tabelaPreco.ValorHoraAdicional;
                     }
 
-                    // Aplicar tolerância de 10 minutos para cada hora adicional
                     if (veiculos.Duracao.Value.TotalMinutes % 60 <= 10)
                     {
                         valorTotal -= tabelaPreco.ValorHoraAdicional;
@@ -147,7 +143,6 @@ namespace Api.Services.Veiculo
 
             try
             {
-                // Procurar o veículo pelo ID
                 var veiculo = await _context.Veiculos.FirstOrDefaultAsync(v => v.Id == veiculoEdicaoDto.Id);
 
                 if (veiculo == null)
@@ -156,7 +151,6 @@ namespace Api.Services.Veiculo
                     return resposta;
                 }
 
-                // Verificar se já existe outro veículo com a mesma placa sem saída registrada
                 bool exists = await _context.Veiculos.AnyAsync(v => v.Id != veiculoEdicaoDto.Id && v.Placa == veiculoEdicaoDto.Placa && v.DataSaida == null);
 
                 if (exists)
@@ -165,12 +159,10 @@ namespace Api.Services.Veiculo
                     return resposta;
                 }
 
-                // Atualizar as informações do veículo
                 veiculo.Placa = veiculoEdicaoDto.Placa;
                 veiculo.DataEntrada = veiculoEdicaoDto.DataEntrada;
                 veiculo.DataSaida = veiculoEdicaoDto.DataSaida;
 
-                // Atualizar o contexto e salvar as mudanças
                 _context.Veiculos.Update(veiculo);
                 await _context.SaveChangesAsync();
 
@@ -192,7 +184,6 @@ namespace Api.Services.Veiculo
 
             try
             {
-                // Procurar o veículo pelo ID
                 var veiculo = await _context.Veiculos.FirstOrDefaultAsync(v => v.Id == idVeiculo);
 
                 if (veiculo == null)
@@ -201,11 +192,9 @@ namespace Api.Services.Veiculo
                     return resposta;
                 }
 
-                // Remover o veículo do contexto
                 _context.Veiculos.Remove(veiculo);
                 await _context.SaveChangesAsync();
-
-                // Retornar a lista atualizada de veículos
+s
                 resposta.Dados = await _context.Veiculos.ToListAsync();
                 resposta.Mensagem = "Veículo removido com sucesso.";
                 return resposta;

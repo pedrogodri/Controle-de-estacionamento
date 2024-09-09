@@ -20,12 +20,12 @@ export class VeiculoService {
     return this.http.get<{ dados: VeiculoModel[] }>(`${this.url}/Listar`);
   }
 
-  registrarEntrada(veiculoEntradaDto: VeiculoEntradaDto): Observable<VeiculoEntradaDto> {
-    return this.http.post<VeiculoEntradaDto>(`${this.url}/Entrada`, veiculoEntradaDto);
+  registrarEntrada(veiculoEntradaDto: VeiculoEntradaDto): Observable<ResponseModel<VeiculoEntradaDto>> {
+    return this.http.post<ResponseModel<VeiculoEntradaDto>>(`${this.url}/Entrada`, veiculoEntradaDto);
   }
 
-  registrarSaida(veiculoSaidaDto: VeiculoSaidaDto): Observable<VeiculoSaidaDto> {
-    return this.http.post<VeiculoSaidaDto>(`${this.url}/Saida`, veiculoSaidaDto);
+  registrarSaida(veiculoSaidaDto: VeiculoSaidaDto): Observable<ResponseModel<VeiculoSaidaDto>> {
+    return this.http.post<ResponseModel<VeiculoSaidaDto>>(`${this.url}/Saida`, veiculoSaidaDto);
   }
 
   editarVeiculo(VeiculoEdicaoDto: VeiculoEdicaoDto): Observable<ResponseModel<VeiculoEdicaoDto>> {

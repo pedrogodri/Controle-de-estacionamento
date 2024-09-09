@@ -59,100 +59,123 @@
         </table>
       </div>
     </div>
-    <div id="modalDelecao" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4>Confirmação de Deleção</h4>
-          </div>
-          <div class="modal-body" *ngIf="veiculoSelecionado">
-            Confirmar a deleção da placa: {{ veiculoSelecionado.placa }}
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button class="btn btn-danger" (click)="excluirTabelaPreco()" data-bs-dismiss="modal">Confirmar</button>
-          </div>
+    <!-- Modal de Deleção -->
+  <div id="modalDelecao" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Confirmação de Deleção</h4>
+        </div>
+        <div class="modal-body" *ngIf="veiculoSelecionado">
+          Confirmar a deleção da placa: {{ veiculoSelecionado.placa }}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-danger" (click)="excluirTabelaPreco()" data-bs-dismiss="modal">Confirmar</button>
         </div>
       </div>
     </div>
-    <div class="modal fade" id="modalEntrada" tabindex="-1" aria-labelledby="modalEntradaLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalEntradaLabel">Cadastro de Entrada</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form (ngSubmit)="cadastrarEntrada()">
-              <div class="mb-3">
-                <label for="placaEntrada" class="form-label">Placa do Veículo</label>
-                <input type="text" class="form-control" id="placaEntrada" [(ngModel)]="veiculoEntrada.placa" name="placaEntrada" required>
-              </div>
-              <div class="mb-3">
-                <label for="dataEntrada" class="form-label">Data de Entrada</label>
-                <input type="datetime-local" class="form-control" id="dataEntrada" [(ngModel)]="veiculoEntrada.dataEntrada" name="dataEntrada" required>
-              </div>
-              <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success">Cadastrar Entrada</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="modalSaida" tabindex="-1" aria-labelledby="modalSaidaLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalSaidaLabel">Cadastro de Saída</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form (ngSubmit)="cadastrarSaida()">
-              <div class="mb-3">
-                <label for="placaSaida" class="form-label">Placa do Veículo</label>
-                <input type="text" class="form-control" id="placaSaida" [(ngModel)]="veiculoSaida.placa" name="placaSaida" required>
-              </div>
-              <div class="mb-3">
-                <label for="dataSaida" class="form-label">Data de Saída</label>
-                <input type="datetime-local" class="form-control" id="dataSaida" [(ngModel)]="veiculoSaida.dataSaida" name="dataSaida" required>
-              </div>
-              <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button> 
-              <button type="submit" class="btn btn-danger">Cadastrar Saída</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal de Edição -->
-    <div class="modal fade" id="modalEdicao" tabindex="-1" aria-labelledby="modalEdicaoLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalEdicaoLabel">Editar Veículo</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form (ngSubmit)="editarVeiculo()">
-              <div class="mb-3">
-                <label for="placaEdicao" class="form-label">Placa do Veículo</label>
-                <input type="text" class="form-control" id="placaEdicao" [(ngModel)]="veiculoSelecionado.placa" name="placaEdicao" required>
-              </div>
-              <div class="mb-3">
-                <label for="dataEntradaEdicao" class="form-label">Data de Entrada</label>
-                <input type="datetime-local" class="form-control" id="dataEntradaEdicao" [(ngModel)]="veiculoSelecionado.dataEntrada" name="dataEntradaEdicao">
-              </div>
-              <div class="mb-3">
-                <label for="dataSaidaEdicao" class="form-label">Data de Saída</label>
-                <input type="datetime-local" class="form-control" id="dataSaidaEdicao" [(ngModel)]="veiculoSelecionado.dataSaida" name="dataSaidaEdicao">
-              </div>
-              <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-warning">Salvar Alterações</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
 
+  <!-- Modal de Entrada -->
+  <div class="modal fade" id="modalEntrada" tabindex="-1" aria-labelledby="modalEntradaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEntradaLabel">Cadastro de Entrada</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Alerta para o modal de entrada -->
+          <div *ngIf="mensagemEntrada" class="alert alert-{{ tipoAlertaEntrada }} alert-dismissible fade show" role="alert">
+            {{ mensagemEntrada }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          
+          <form (ngSubmit)="cadastrarEntrada()">
+            <div class="mb-3">
+              <label for="placaEntrada" class="form-label">Placa do Veículo</label>
+              <input type="text" class="form-control" id="placaEntrada" [(ngModel)]="veiculoEntrada.placa" name="placaEntrada" required>
+            </div>
+            <div class="mb-3">
+              <label for="dataEntrada" class="form-label">Data de Entrada</label>
+              <input type="datetime-local" class="form-control" id="dataEntrada" [(ngModel)]="veiculoEntrada.dataEntrada" name="dataEntrada" required>
+            </div>
+            <!-- Outros campos de entrada -->
+            <button type="submit" class="btn btn-primary">Cadastrar Entrada</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Saída -->
+  <div class="modal fade" id="modalSaida" tabindex="-1" aria-labelledby="modalSaidaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalSaidaLabel">Cadastro de Saída</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Alerta para o modal de saída -->
+          <div *ngIf="mensagemSaida" class="alert alert-{{ tipoAlertaSaida }} alert-dismissible fade show" role="alert">
+            {{ mensagemSaida }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+          <form (ngSubmit)="cadastrarSaida()">
+            <div class="mb-3">
+              <label for="placaSaida" class="form-label">Placa do Veículo</label>
+              <input type="text" class="form-control" id="placaSaida" [(ngModel)]="veiculoSaida.placa" name="placaSaida" required>
+            </div>
+            <div class="mb-3">
+              <label for="dataSaida" class="form-label">Data de Saída</label>
+              <input type="datetime-local" class="form-control" id="dataSaida" [(ngModel)]="veiculoSaida.dataSaida" name="dataSaida" required>
+            </div>
+            <!-- Outros campos de saída -->
+            <button type="submit" class="btn btn-primary">Cadastrar Saída</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Edição -->
+  <div class="modal fade" id="modalEdicao" tabindex="-1" aria-labelledby="modalEdicaoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEdicaoLabel">Edição de Veículo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Alerta para o modal de edição -->
+          <div *ngIf="mensagemEdicao" class="alert alert-{{ tipoAlertaEdicao }} alert-dismissible fade show" role="alert">
+            {{ mensagemEdicao }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+          <form (ngSubmit)="editarVeiculo()">
+            <div class="mb-3">
+              <label for="placaEdit" class="form-label">Placa do Veículo</label>
+              <input type="text" class="form-control" id="placaEdit" [(ngModel)]="veiculoSelecionado.placa" name="placaEdit" required>
+            </div>
+            <div class="mb-3">
+              <label for="dataEntradaEdicao" class="form-label">Data de Entrada</label>
+              <input type="datetime-local" class="form-control" id="dataEntradaEdicao" [(ngModel)]="veiculoSelecionado.dataEntrada" name="dataEntradaEdicao">
+            </div>
+            <div class="mb-3">
+              <label for="dataSaidaEdicao" class="form-label">Data de Saída</label>
+              <input type="datetime-local" class="form-control" id="dataSaidaEdicao" [(ngModel)]="veiculoSelecionado.dataSaida" name="dataSaidaEdicao">
+            </div>
+            <!-- Outros campos de edição -->
+            <button type="submit" class="btn btn-primary">Salvar Edição</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
     
 </div>
 
