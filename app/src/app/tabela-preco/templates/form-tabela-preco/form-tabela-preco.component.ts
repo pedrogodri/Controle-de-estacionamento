@@ -12,6 +12,7 @@ import { TabelaPrecoEdicaoDto } from 'src/app/models/tabela-preco/tabela-preco-e
 export class FormTabelaPrecoComponent {
   tabelaPreco: TabelaPrecoCriacaoDto;
   idTabelaPreco?: number;
+  message?: string; // Adicione esta variável
 
   constructor(private service: TabelaPrecoService, private router: Router) {
     this.tabelaPreco = new TabelaPrecoCriacaoDto();
@@ -41,13 +42,11 @@ export class FormTabelaPrecoComponent {
     this.router.navigate(['lista-tabela-preco']);
   }
 
-  // Método para formatar a data no formato yyyy-MM-dd
   formatDate(date: string | Date): string {
     const dateObj = new Date(date);
     return dateObj.toISOString().split('T')[0];
   }
 
-  // Mapeia a resposta para o formato correto
   private mapResponseToTabelaPreco(data: any): TabelaPrecoCriacaoDto {
     return {
       ...data,
@@ -57,12 +56,11 @@ export class FormTabelaPrecoComponent {
   }
 
   onSubmit(): void {
-    // Verifica se o idTabelaPreco é válido para editar
     if (this.idTabelaPreco && this.idTabelaPreco > 0) {
       this.service.editarTabelaPreco(this.tabelaPreco as TabelaPrecoEdicaoDto).subscribe(
         (response) => {
           if (response && response.mensagem) {
-            console.log('Mensagem:', response.mensagem); 
+            this.message = response.mensagem; // Atualize a mensagem
           }
         }
       );
@@ -70,7 +68,7 @@ export class FormTabelaPrecoComponent {
       this.service.criarTabelaPreco(this.tabelaPreco).subscribe(
         (response) => {
           if (response && response.dados) {
-            console.log('Tabela de Preço criada com sucesso!', response.mensagem);
+            this.message = response.mensagem || 'Tabela de Preço criada com sucesso!'; // Atualize a mensagem
             this.tabelaPreco = response.dados;
           }
         }

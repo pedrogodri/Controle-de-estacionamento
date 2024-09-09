@@ -1,6 +1,13 @@
 <form #tabelaPrecoForm="ngForm" class="mt-5 mb-5 ajust-footer" (ngSubmit)="onSubmit()">
   <div class="row d-flex justify-content-center">
     <div class="col-6">
+      <div class="alert alert-success" *ngIf="message" role="alert">
+        {{ message }}
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-6">
       <div class="form-floating mb-3">
         <input
           type="number"
