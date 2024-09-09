@@ -1,5 +1,5 @@
 export class ResponseModel<T> {
-    Dados?:T
-    Mensagem: string = ""
-    Status?: boolean
+    dados?: T;
+    mensagem?: string;
+    status?: boolean;
 }

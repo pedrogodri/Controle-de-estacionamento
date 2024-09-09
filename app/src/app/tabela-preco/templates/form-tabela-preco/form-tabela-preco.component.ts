@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TabelaPrecoCriacaoDto } from 'src/app/models/tabela-preco/tabela-preco-criacao-dto';
 import { TabelaPrecoService } from 'src/app/services/tabela-preco/tabela-preco.service';
+import { TabelaPrecoEdicaoDto } from 'src/app/models/tabela-preco/tabela-preco-edicao-dto';
 
 @Component({
   selector: 'app-form-tabela-preco',
@@ -21,8 +22,12 @@ export class FormTabelaPrecoComponent {
     if (this.idTabelaPreco) {
       this.service.getTabelaPrecoById(this.idTabelaPreco).subscribe(
         (response) => {
-          // Ajuste para garantir que os dados sejam extraídos corretamente
-          this.tabelaPreco = this.mapResponseToTabelaPreco(response.dados);
+          if (response && response.dados) {
+            this.tabelaPreco = this.mapResponseToTabelaPreco(response.dados);
+          } else {
+            console.error('Dados da Tabela de Preço estão indefinidos.');
+            this.tabelaPreco = new TabelaPrecoCriacaoDto();
+          }
         },
         (errorResponse) => {
           console.error('Erro ao buscar Tabela de Preço:', errorResponse);
@@ -32,7 +37,7 @@ export class FormTabelaPrecoComponent {
     }
   }
 
-  voltarListagem()  {
+  voltarListagem() {
     this.router.navigate(['lista-tabela-preco']);
   }
 
@@ -52,23 +57,22 @@ export class FormTabelaPrecoComponent {
   }
 
   onSubmit(): void {
-    if (this.idTabelaPreco) {
-      this.service.editarTabelaPreco(this.tabelaPreco).subscribe(
+    // Verifica se o idTabelaPreco é válido para editar
+    if (this.idTabelaPreco && this.idTabelaPreco > 0) {
+      this.service.editarTabelaPreco(this.tabelaPreco as TabelaPrecoEdicaoDto).subscribe(
         (response) => {
-          console.log('Tabela de Preço editada com sucesso!', response);
-        },
-        (errorResponse) => {
-          console.error('Erro ao editar Tabela de Preço:', errorResponse);
+          if (response && response.mensagem) {
+            console.log('Mensagem:', response.mensagem); 
+          }
         }
       );
     } else {
       this.service.criarTabelaPreco(this.tabelaPreco).subscribe(
         (response) => {
-          console.log('Tabela de Preço criada com sucesso!', response);
-          this.tabelaPreco = response;
-        },
-        (errorResponse) => {
-          console.error('Erro ao criar Tabela de Preço:', errorResponse);
+          if (response && response.dados) {
+            console.log('Tabela de Preço criada com sucesso!', response.mensagem);
+            this.tabelaPreco = response.dados;
+          }
         }
       );
     }

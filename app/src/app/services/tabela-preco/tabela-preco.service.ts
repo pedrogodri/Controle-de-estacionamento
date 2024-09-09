@@ -25,8 +25,8 @@ export class TabelaPrecoService {
     return this.http.get<ResponseModel<TabelaPrecoModel>>(`${this.url}/BuscarTabelaPrecoPorId/${idTabelaPreco}`);
   }
 
-  criarTabelaPreco(tabelaPrecoCriacaoDto: TabelaPrecoCriacaoDto): Observable<TabelaPrecoCriacaoDto> {
-    return this.http.post<TabelaPrecoCriacaoDto>(`${this.url}/CriarTabelaPreco`, tabelaPrecoCriacaoDto);
+  criarTabelaPreco(tabelaPrecoCriacaoDto: TabelaPrecoCriacaoDto): Observable<ResponseModel<TabelaPrecoModel>> {
+    return this.http.post<ResponseModel<TabelaPrecoModel>>(`${this.url}/CriarTabelaPreco`, tabelaPrecoCriacaoDto);
   }
 
   editarTabelaPreco(tabelaPrecoEdicaoDto: TabelaPrecoEdicaoDto): Observable<ResponseModel<TabelaPrecoModel>> {
