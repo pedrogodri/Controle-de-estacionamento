@@ -194,7 +194,7 @@ namespace Api.Services.Veiculo
 
                 _context.Veiculos.Remove(veiculo);
                 await _context.SaveChangesAsync();
-s
+
                 resposta.Dados = await _context.Veiculos.ToListAsync();
                 resposta.Mensagem = "Veículo removido com sucesso.";
                 return resposta;
